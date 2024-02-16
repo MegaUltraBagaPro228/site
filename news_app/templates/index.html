@@ -1,0 +1,27 @@
+{%extends './base.html'%}
+{%block content%} 
+<section class="home">
+    <div class="container">
+        <h1 class="home-title">Welcome to Anime World</h1>
+        <p class="home-description">Добро пожаловать на наш аниме сайт! Открой для себя захватывающий мир японской анимации с широким выбором жанров. Пользуйся удобным поиском, читай рецензии, следи за новостями в блоге. Присоединяйся к нашему аниме сообществу для обсуждения и обмена любовью к этому искусству!</p>
+        <a href="{% url 'news_page' %}" class="button-outline-light">Last news</a>
+    </div>
+</section>
+<section class="last-news">
+    <div class="container">
+        <h2 class="primary-title">Last news</h2>
+        <div class="news-row">
+            {% if latest_news %} {% for i in latest_news %}
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="{{i.image}}" alt="test">
+                </div>
+                <h3 class="news-title">{{i.title}}</h3>
+                <h3 class="news-date">{{i.created_at}}</h3>
+                <a href="{% url 'news_detail_page' i.pk %}" class="button-primary">Смотреть</a>
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+</section>
+{%endblock%}
